@@ -1,5 +1,9 @@
 # build output
 dist/
+
+# raw/source photo uploads — optimized copies actually used by the site
+# live in src/assets/images/
+/images/
 # generated types
 .astro/
 
