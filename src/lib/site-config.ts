@@ -56,12 +56,15 @@ export const siteConfig = {
     },
   ],
 
+  // Prefixed with the homepage path so these links also work from other
+  // pages (e.g. the privacy policy) — a bare "#anchor" href only scrolls
+  // if you're already on the page containing that section.
   nav: [
-    { label: "Services", href: "#physiotherapy-services-singapore" },
-    { label: "About", href: "#about-eugene-foo" },
-    { label: "Reviews", href: "#patient-reviews" },
-    { label: "FAQ", href: "#physiotherapy-faq-singapore" },
-    { label: "Locations", href: "#clinic-locations-singapore" },
+    { label: "Services", href: `${import.meta.env.BASE_URL}#physiotherapy-services-singapore` },
+    { label: "About", href: `${import.meta.env.BASE_URL}#about-eugene-foo` },
+    { label: "Reviews", href: `${import.meta.env.BASE_URL}#patient-reviews` },
+    { label: "FAQ", href: `${import.meta.env.BASE_URL}#physiotherapy-faq-singapore` },
+    { label: "Locations", href: `${import.meta.env.BASE_URL}#clinic-locations-singapore` },
   ],
 } as const;
 
