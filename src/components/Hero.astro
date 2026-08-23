@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+import treatmentRoom from "../assets/images/treatment-room.jpg";
+import { siteConfig } from "../lib/site-config";
+---
+
+<section id="top" class="relative overflow-hidden bg-forest">
+  <Image
+    src={treatmentRoom}
+    alt="A treatment room at Reverse Physio, with an infrared sauna and a treatment table"
+    class="absolute inset-0 h-full w-full object-cover"
+    widths={[640, 1024, 1600, 2400]}
+    sizes="100vw"
+    priority
+  />
+  <div
+    class="absolute inset-0 bg-gradient-to-tr from-forest/95 via-forest/70 to-forest/30"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-7xl px-4 pb-16 pt-20 sm:px-6 sm:pb-24 sm:pt-28 lg:px-8 lg:pb-32 lg:pt-36">
+    <div class="max-w-2xl">
+      <p class="text-sm font-semibold uppercase tracking-wide text-mint">
+        {siteConfig.name} &middot; Tanjong Pagar, Outram Park, Tiong Bahru
+      </p>
+      <h1 class="mt-3 text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl">
+        Reverse pain. Restore movement. <span class="accent-word text-mint">Reclaim life.</span>
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-white/85">
+        {siteConfig.valueProp}
+      </p>
+
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <a
+          href={siteConfig.whatsapp.bookingHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-mint px-7 py-3.5 text-base font-semibold text-forest transition-transform hover:scale-[1.03]"
+        >
+          Book on WhatsApp
+        </a>
+        <a
+          href="#physiotherapy-services-singapore"
+          class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/40 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white/10"
+        >
+          View Services
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

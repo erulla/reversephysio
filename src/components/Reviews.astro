@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+
+const testimonials = (await getCollection("testimonials")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<section id="patient-reviews" class="bg-white py-20 sm:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="max-w-xl">
+      <h2 class="text-3xl font-extrabold tracking-tight text-forest sm:text-4xl">
+        What patients <span class="accent-word text-teal">say</span>
+      </h2>
+      <p class="mt-4 text-lg text-forest/70">A few words from people we've worked with recently.</p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        testimonials.map(({ data }) => (
+          <figure class="flex flex-col justify-between rounded-2xl bg-cream p-6">
+            <div>
+              <div class="flex" aria-hidden="true">
+                {Array.from({ length: data.rating }).map(() => (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#70ED9F">
+                    <path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5-6-3.5-6 3.5 1.5-6.5-5-4.4 6.6-.6L12 2.5Z" />
+                  </svg>
+                ))}
+              </div>
+              <blockquote class="mt-4 text-sm leading-relaxed text-forest/80">“{data.quote}”</blockquote>
+            </div>
+            <figcaption class="mt-5 text-sm font-semibold text-forest">— {data.name}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,100 @@
+---
+import { siteConfig } from "../lib/site-config";
+import { serviceCategories, type ServiceCategory } from "../lib/content";
+
+// Tailwind's scanner only detects classes that appear as literal text in this
+// file, so named peer/peer-checked classes can't be built with a template
+// literal — each category's classes are spelled out here instead.
+const tabClasses: Record<
+  ServiceCategory["slug"],
+  { input: string; label: string; panel: string }
+> = {
+  "manual-therapy": {
+    input: "peer/manual-therapy sr-only",
+    label:
+      "cursor-pointer rounded-2xl border border-forest/10 px-5 py-4 text-center text-sm font-semibold text-forest/70 transition-colors hover:border-teal/40 peer-checked/manual-therapy:border-teal peer-checked/manual-therapy:bg-teal peer-checked/manual-therapy:text-white peer-focus-visible/manual-therapy:outline peer-focus-visible/manual-therapy:outline-3 peer-focus-visible/manual-therapy:outline-teal peer-focus-visible/manual-therapy:outline-offset-2",
+    panel: "col-span-full hidden rounded-3xl bg-cream p-6 peer-checked/manual-therapy:block sm:p-10",
+  },
+  rehabilitation: {
+    input: "peer/rehabilitation sr-only",
+    label:
+      "cursor-pointer rounded-2xl border border-forest/10 px-5 py-4 text-center text-sm font-semibold text-forest/70 transition-colors hover:border-teal/40 peer-checked/rehabilitation:border-teal peer-checked/rehabilitation:bg-teal peer-checked/rehabilitation:text-white peer-focus-visible/rehabilitation:outline peer-focus-visible/rehabilitation:outline-3 peer-focus-visible/rehabilitation:outline-teal peer-focus-visible/rehabilitation:outline-offset-2",
+    panel: "col-span-full hidden rounded-3xl bg-cream p-6 peer-checked/rehabilitation:block sm:p-10",
+  },
+  "strength-conditioning": {
+    input: "peer/strength-conditioning sr-only",
+    label:
+      "cursor-pointer rounded-2xl border border-forest/10 px-5 py-4 text-center text-sm font-semibold text-forest/70 transition-colors hover:border-teal/40 peer-checked/strength-conditioning:border-teal peer-checked/strength-conditioning:bg-teal peer-checked/strength-conditioning:text-white peer-focus-visible/strength-conditioning:outline peer-focus-visible/strength-conditioning:outline-3 peer-focus-visible/strength-conditioning:outline-teal peer-focus-visible/strength-conditioning:outline-offset-2",
+    panel:
+      "col-span-full hidden rounded-3xl bg-cream p-6 peer-checked/strength-conditioning:block sm:p-10",
+  },
+};
+---
+
+<section id="physiotherapy-services-singapore" class="bg-white py-20 sm:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-extrabold tracking-tight text-forest sm:text-4xl">
+        Three ways we <span class="accent-word text-teal">help you move</span>
+      </h2>
+      <p class="mt-4 text-lg text-forest/70">
+        How our approach fits into your recovery — from easing pain, to rebuilding function, to
+        training for performance.
+      </p>
+    </div>
+
+    <fieldset class="mt-12 grid grid-cols-1 gap-3 border-0 p-0 sm:grid-cols-3">
+      <legend class="sr-only">Choose a service category</legend>
+
+      {
+        serviceCategories.map((category, index) => (
+          <input
+            type="radio"
+            name="service-category"
+            id={`tab-${category.slug}`}
+            class={tabClasses[category.slug].input}
+            checked={index === 0}
+          />
+        ))
+      }
+
+      {
+        serviceCategories.map((category) => (
+          <label for={`tab-${category.slug}`} class={tabClasses[category.slug].label}>
+            {category.title}
+          </label>
+        ))
+      }
+
+      {
+        serviceCategories.map((category) => (
+          <div id={category.anchorId} class={tabClasses[category.slug].panel}>
+            <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-start">
+              <div>
+                <h3 class="text-2xl font-extrabold tracking-tight text-forest">{category.title}</h3>
+                <p class="mt-3 text-base leading-relaxed text-forest/70">{category.description}</p>
+                <a
+                  href={siteConfig.whatsapp.bookingHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-6 inline-flex items-center justify-center rounded-full bg-mint px-6 py-3 text-sm font-semibold text-forest transition-transform hover:scale-[1.03]"
+                >
+                  Book on WhatsApp
+                </a>
+              </div>
+              <ul class="flex flex-wrap gap-2" aria-label={`Techniques included in ${category.title}`}>
+                {
+                  category.techniques.map((technique) => (
+                    <li class="rounded-full border border-teal/25 bg-white px-4 py-2 text-sm font-medium text-forest">
+                      {technique}
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </fieldset>
+  </div>
+</section>

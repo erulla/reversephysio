@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { siteConfig } from "../lib/site-config";
+---
+
+<BaseLayout
+  title={`Privacy Policy | ${siteConfig.name}`}
+  description={`How ${siteConfig.name} collects, uses, and protects your personal information.`}
+>
+  <Header />
+  <main id="main-content" class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-extrabold tracking-tight text-forest sm:text-4xl">Privacy Policy</h1>
+    <p class="mt-4 text-sm text-forest/60">
+      [PLACEHOLDER] Last updated: [PLACEHOLDER DATE]. This page is a starting template only and
+      has not been reviewed by legal counsel — replace it with the clinic's actual privacy policy,
+      including any health-information handling obligations under Singapore's PDPA, before launch.
+    </p>
+
+    <div class="mt-8 max-w-none space-y-6 text-forest/80">
+      <section>
+        <h2 class="text-xl font-bold text-forest">Information we collect</h2>
+        <p class="mt-2 leading-relaxed">
+          Reverse Physio does not run a website contact form — appointments are arranged over
+          WhatsApp, and any personal or medical information shared there is handled as part of
+          that conversation. [PLACEHOLDER: describe any additional data collected, e.g. analytics
+          or cookies.]
+        </p>
+      </section>
+      <section>
+        <h2 class="text-xl font-bold text-forest">How we use your information</h2>
+        <p class="mt-2 leading-relaxed">
+          Information shared with us is used solely to respond to your inquiry and coordinate
+          care. We do not sell your personal information.
+          [PLACEHOLDER: add details specific to the clinic's data practices and any scheduling
+          software used.]
+        </p>
+      </section>
+      <section>
+        <h2 class="text-xl font-bold text-forest">Contact us</h2>
+        <p class="mt-2 leading-relaxed">
+          Questions about this policy can be sent to{" "}
+          <a href={`mailto:${siteConfig.email}`} class="font-semibold text-teal hover:underline">
+            {siteConfig.email}
+          </a>
+          .
+        </p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
